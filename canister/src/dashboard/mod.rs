@@ -227,7 +227,9 @@ fn level((price, quantity): (Price, Quantity), decimals: &PairDecimals) -> Dashb
     }
 }
 
-fn format_scaled(raw: &str, decimals: u8) -> String {
+/// Formats `raw` smallest units as a decimal number of whole units, without
+/// trailing zeros, e.g. `"150000000"` with 8 decimals is `"1.5"`.
+pub(crate) fn format_scaled(raw: &str, decimals: u8) -> String {
     let decimals = decimals as usize;
     if decimals == 0 {
         return raw.to_string();
